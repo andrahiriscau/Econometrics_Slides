@@ -1,3 +1,3 @@
 # Econometrics_Slides
 
-[Lecture 1](https://beta.rstudioconnect.com/connect/#/apps/2652f6dd-7379-4b27-8b71-2dec03e4ab67/access/2785)
+[Lecture 1](https://andrahiriscau.github.io/Econometrics_Slides/Lecture-1.-What-is-Econometrics-.html)
