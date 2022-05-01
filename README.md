@@ -1,3 +1,3 @@
 # Econometrics_Slides
 
-[Lecture 1](https://github.com/andrahiriscau/Econometrics_Slides/blob/main/Lecture%201/Lecture-1.-What-is-Econometrics-.html)
+[Lecture 1](https://andrahiriscau.github.io/Econometrics_Slides/Lecture_1/Econometrics.html)
