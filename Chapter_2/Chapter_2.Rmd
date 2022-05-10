@@ -58,7 +58,7 @@ style_duo_accent(
 “Explains variable y in terms of variable x”
 
 
-<img src ="/Users/andra/Dropbox/Teaching/Econometrics_Slides/Chapter_2/21.png" style="width: 800px">
+<img src ="21.png" style="width: 800px">
 
 
 ---
