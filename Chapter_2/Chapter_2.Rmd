@@ -51,15 +51,14 @@ style_duo_accent(
 
 ```
 
-
 ---
 ## 2.1 Definition of the Simple Regression Model
 
 “Explains variable y in terms of variable x”
 
-
-<img src ="21.png" style="width: 800px">
-
+```{r}
+knitr::include_graphics("21.png")
+```
 
 ---
 ## Definition of the Simple Regression Model
