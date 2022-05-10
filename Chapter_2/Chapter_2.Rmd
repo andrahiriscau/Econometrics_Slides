@@ -1,0 +1,83 @@
+---
+title: "Chapter 2. The Simple Regression Model"
+author: "Andra Hiriscau"
+#date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+      css: xaringan-themer.css
+      #css: ['example.css']
+      lib_dir: libs
+      nature:
+        slideNumberFormat: "%current%"
+        highlightStyle: github
+        highlightLines: true
+        ratio: 16:9
+        countIncrementalSlides: true
+
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, dpi = 200, fig.width = 8, fig.height = 5)
+
+#knitr::opts_chunk$set(
+#  fig.width=9, fig.height=3.5, fig.retina=3,
+ # out.width = "100%",
+  #cache = FALSE,
+  #echo = TRUE,
+  #message = FALSE, 
+  #warning = FALSE,
+  #hiline = TRUE
+#)
+```
+
+
+``` {r xaringan-themer, include=FALSE, warning=FALSE}
+# install.packages("remotes")
+#remotes::install_github('rstudio/chromote')
+#remotes::install_github("jhelvy/xaringanBuilder")
+library(xaringanBuilder)
+
+library(xaringanthemer)
+style_duo_accent(
+ # primary_color = "#1381B0",
+  primary_color = "#006600", # color first slide and titles
+  secondary_color = "#FF961C",
+  inverse_header_color = "#FFFFFF"  #white
+)
+
+#this to build PDF :)
+#build_pdf('https://github.com/andrahiriscau/Econometrics_Slides/blob/main/Lecture_1/Econometrics.html')
+
+```
+
+
+---
+## 2.1 Definition of the Simple Regression Model
+
+“Explains variable y in terms of variable x”
+
+
+<img src ="/Users/andra/Dropbox/Teaching/Econometrics_Slides/Chapter_2/21.png" style="width: 800px">
+
+
+---
+## Definition of the Simple Regression Model
+
+ 
+
+By how much does the dependent variable change if the independent variable is increased by one unit?
+$$\frac{\Delta y}{\Delta x}=\beta_{1} \quad$$
+
+
+Interpretation only correct if all other  things remain equal when the independent variable is increased by one unit.
+
+ $$\quad \frac{\Delta u}{\Delta x}=0$$
+
+???
+add notes
+---
+
+
+
+
