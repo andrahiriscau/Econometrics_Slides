@@ -9,9 +9,13 @@
 The recommneded books are:
 
 Introductory Econometrics A Modern Approach Jeffrey M. Wooldridge
+
 The Effect: An Introduction to Research Design and Causality by Nick Huntington-Klein: https://theeffectbook.net/index.html
+
 Causal Inference: The Mixtape by Scott Cunningham: https://mixtape.scunning.com/index.html
 
 Teaching materials:
+
 Econometrics Course by Nick Huntington-Klein: https://github.com/NickCH-K/EconometricsSlides
+
 Causality Inference Course by Nick Huntington-Klein: https://github.com/NickCH-K/CausalitySlides
