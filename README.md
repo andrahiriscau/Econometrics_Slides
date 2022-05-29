@@ -5,6 +5,7 @@
 [Lecture 1.1](https://andrahiriscau.github.io/Econometrics_Slides/Chapter_2/Chapter_2.html#1)
 
 
+[Elasticity](https://andrahiriscau.github.io/Econometrics_Slides/Lehman_College/Elasticity.html#1)
 
 The recommneded books are:
 
