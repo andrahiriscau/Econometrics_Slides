@@ -214,12 +214,12 @@ $$ \hat{Y} = 15.8 $$
 
 - The intercept is the prediction of $Y$ when $X=0$
 
-$$ Y = 3 + 4*X $$
+$$Y = 3 + 4*X$$
 --
 
-$$ \hat{Y} = 3 + 4*0 $$
+$$\hat{Y} = 3 + 4*0$$
 
-$$ \hat{Y} = 3 $$
+$$\hat{Y} = 3$$
 
 ---
 
@@ -260,7 +260,7 @@ $$ \hat{Y} = 3 + 4*4 = 19 $$
 - If $slope < 0$, $X$ and $Y$ are negatively $(-)$ related/correlated
 
 
-
+---
 
 # Concept Checks
 

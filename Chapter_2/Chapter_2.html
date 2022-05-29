@@ -25,7 +25,7 @@ class: center, middle, inverse, title-slide
 # The Simple Regression Model
 ]
 .subtitle[
-## Introductory Econometrics: A Modern Approach
+## Introductory Econometrics: A Modern Approach Chapter 2
 ]
 
 ---
@@ -41,9 +41,10 @@ class: center, middle, inverse, title-slide
 ---
 ## 2.1 Definition of the Simple Regression Model
 
-.red[“Explains variable y in terms of variable x”]
---
-&lt;img src="21.png" width="1800" /&gt;
+“Explains variable `\(y\)` in terms of variable `\(x\)`”
+
+
+&lt;img src="21.png" width="400px" /&gt;
 
 ---
 ### The Simple Regression Model
@@ -51,8 +52,12 @@ class: center, middle, inverse, title-slide
  
 
 By how much does the dependent variable change if the independent variable is increased by one unit?
+
+--
+
 `$$\frac{\Delta y}{\Delta x}=\beta_{1} \quad$$`
 
+--
 
 Interpretation only correct if all other  things remain equal when the independent variable is increased by one unit.
 
@@ -64,14 +69,19 @@ add notes
 ### The Simple Regression Model
   - Example: Soybean yield and fertilizer
 
-&lt;img src="22.png" width="1763" /&gt;
+&lt;img src="22.png" width="600px" /&gt;
+
+--
 
   - Example: A simple wage equation 
 
-&lt;img src="23.png" width="1719" /&gt;
+&lt;img src="23.png" width="600px" /&gt;
+
+--
 
 Does `\(\beta_{1}\)` measure a CAUSAL effect of `\(x\)` on `\(y\)`?
 
+--
 
   - It depends on the relationship with `\(x\)` and `\(u\)` 
 
@@ -79,55 +89,88 @@ Does `\(\beta_{1}\)` measure a CAUSAL effect of `\(x\)` on `\(y\)`?
 ---
 ### The Simple Regression Model
 
-Assumption 1: `\(E(u)=0\)` 
+**Assumption 1: `\(E(u)=0\)`** 
 
 As long as `\(\beta_{0}\)` is included in the regression, nothing is lost assuming that the average value of  `\(u\)` in the population is zero. Why?
 
+--
+
  - When is there a causal interpretation?
  
-Assumption 2:  `\(E(u|x)=E(u)\)`
+--
+
+**Assumption 2:  `\(E(u|x)=E(u)\)`**
  
    - The independent variable does not contain information about the mean of the unobserved factors 
    - Average values of the unobservables is the same across all values of `\(x\)`, and that the common average is equal to the average of `\(u\)` over the entire population
  
+???
+prepare the derivation for including/ not including the intercept
 
 ---
 ### The Simple Regression Model
 
+  - Assumption 1: `\(E(u)=0\)` 
+  
+  - Assumption 2:  `\(E(u|x)=E(u)\)`
+
+Combining the assumption 1 and 2:
+
+--  
+  
 **Zero Conditional Mean Assumption:** `\(E(u|x)=0\)`
 
+If zero conditional mean assumption holds, then we have a causal interpretation of our coefficient.
 
+Example:
 
-Intuition:
+`$$wage=\beta_{0}+\beta_{1} educ+u$$`
+--
 
-&lt;img src="24.png" width="1627" /&gt;
+Does `\(\widehat{\beta_{1}}\)` have a causal interpretation (e.g. does education causes higher wages)? Why or why not? 
+
+--
+
+e.g. Intelligence is part of the error term `\(u\)`
+
+--
+
+The conditional mean independence assumption is unlikely to hold because individuals with more education will also be more intelligent on average.
+
 
 
 ---
 ### Population regression function (PFR)
 
-- The zero conditional mean independence assumption ($ E(u|x)=0 $) implies that:
+- The zero conditional mean independence assumption `\(E(u|x)=0\)` implies that:
 
-$$
-`\begin{aligned}
+`$$\begin{aligned}
 E(y \mid x) &amp;=E\left(\beta_{0}+\beta_{1} x+u \mid x\right) \\
 &amp;=\beta_{0}+\beta_{1} x+E(u \mid x) \\
 &amp;=\beta_{0}+\beta_{1} x
-\end{aligned}`
-$$
+\end{aligned}$$`
 
-- It means that the average value of the dependent variable can be expressed as a linear function of the explanatory variable. This is the +unknown+ population function.
+- It means that the average value of the dependent variable can be expressed as a linear function of the explanatory variable. This is the *unknown* population function.
+
+--
 
 - `\(E(y \mid x)\)` tells us how the average value if `\(y\)` changes with `\(x\)`; it does not say that `\(y\)` equals `\(\beta_{0}+\beta_{1} x\)` for all units in the population
  
+--
+
   - Example `\(E(colGPA|hsGPA)=1.5+ 0.5hsGPA\)`
 
+--
+
 - Note: One unit increase in `\(x\)` changes the *expected values* of  `\(y\)` by the amount of `\(\beta_{1}\)`
+
+???
+check notes here for example
 
 ---
 ### Population regression function (PFR)
 
-&lt;img src="25.png" width="2133" /&gt;
+&lt;img src="25.png" width="700px" style="display: block; margin: auto;" /&gt;
 
 ---
 ### Causation VS Correlation
@@ -137,11 +180,15 @@ What is correlation?
 - Correlation is a statistical measure that expresses the extent to which two variables are linearly related (meaning they change together at a constant rate).
 - [Spurious correlations LINK](https://www.tylervigen.com/spurious-correlations) 
 
+--
+
 Correlation **DOES NOT IMPLY** causation !!!
 
 - [Ceteris Paribus VIDEO](https://mru.org/courses/mastering-econometrics/ceteris-paribus)
 
-- The required assumption to establish causality is the zero conditional mean independence ($E(u|x)=0$)
+--
+
+-  **The required assumption to establish causality is the zero conditional mean independence `\(E(u|x)=0\)`**
 
 
 ---
@@ -152,14 +199,14 @@ Correlation **DOES NOT IMPLY** causation !!!
 
 - A random sample of `\(n\)` observations
 
-&lt;img src="26.png" width="2193" /&gt;
+&lt;img src="26.png" width="700px" /&gt;
 
 ---
 ### Deriving the Ordinary Least Square (OLS) Estimates
 
 The Ordinary Least Squares method estimates the intercept and slope of a line that “best fits” the observed data by minimizing the sum of the squared distances between the points and the line.
 
-&lt;img src="27.png" width="2324" /&gt;
+&lt;img src="27.png" width="700px" /&gt;
 
 
 [**Guess the regression line- SIMULATION**](https://professoramanda.github.io/econsimulations/)
@@ -235,15 +282,15 @@ DT::datatable(head(wage1, 10),
   fillContainer = FALSE, options = list(pageLength = 5))
 ```
 
-<div id="htmlwidget-9e6af101723b8d9edd35" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9e6af101723b8d9edd35">{"x":{"filter":"none","vertical":false,"fillContainer":false,"data":[["1","2","3","4","5","6","7","8","9","10"],[3.09999990463257,3.24000000953674,3,6,5.30000019073486,8.75,11.25,5,3.59999990463257,18.1800003051758],[11,12,11,8,12,16,18,12,12,17],[2,22,2,44,7,9,15,5,26,22],[0,2,0,28,2,8,7,3,4,21],[0,0,0,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,1,1,0],[0,1,0,1,1,1,0,0,0,1],[2,3,2,0,1,0,0,0,2,0],[1,1,0,1,0,1,1,1,1,1],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[1,1,1,1,1,1,1,1,1,1],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,1,0,0,0,1,0,1,0],[0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,1,0,0,0,0],[0,0,0,0,0,1,1,1,1,1],[0,0,0,1,0,0,0,0,0,0],[0,1,0,0,0,0,0,0,0,0],[1.13140213489532,1.17557334899902,1.0986123085022,1.7917594909668,1.66770684719086,2.16905379295349,2.42036819458008,1.60943794250488,1.28093385696411,2.9003221988678],[4,484,4,1936,49,81,225,25,676,484],[0,4,0,784,4,64,49,9,16,441]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>wage<\/th>\n      <th>educ<\/th>\n      <th>exper<\/th>\n      <th>tenure<\/th>\n      <th>nonwhite<\/th>\n      <th>female<\/th>\n      <th>married<\/th>\n      <th>numdep<\/th>\n      <th>smsa<\/th>\n      <th>northcen<\/th>\n      <th>south<\/th>\n      <th>west<\/th>\n      <th>construc<\/th>\n      <th>ndurman<\/th>\n      <th>trcommpu<\/th>\n      <th>trade<\/th>\n      <th>services<\/th>\n      <th>profserv<\/th>\n      <th>profocc<\/th>\n      <th>clerocc<\/th>\n      <th>servocc<\/th>\n      <th>lwage<\/th>\n      <th>expersq<\/th>\n      <th>tenursq<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ad72900c655b163cbaab" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ad72900c655b163cbaab">{"x":{"filter":"none","vertical":false,"fillContainer":false,"data":[["1","2","3","4","5","6","7","8","9","10"],[3.09999990463257,3.24000000953674,3,6,5.30000019073486,8.75,11.25,5,3.59999990463257,18.1800003051758],[11,12,11,8,12,16,18,12,12,17],[2,22,2,44,7,9,15,5,26,22],[0,2,0,28,2,8,7,3,4,21],[0,0,0,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,1,1,0],[0,1,0,1,1,1,0,0,0,1],[2,3,2,0,1,0,0,0,2,0],[1,1,0,1,0,1,1,1,1,1],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[1,1,1,1,1,1,1,1,1,1],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,1,0,0,0,1,0,1,0],[0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,1,0,0,0,0],[0,0,0,0,0,1,1,1,1,1],[0,0,0,1,0,0,0,0,0,0],[0,1,0,0,0,0,0,0,0,0],[1.13140213489532,1.17557334899902,1.0986123085022,1.7917594909668,1.66770684719086,2.16905379295349,2.42036819458008,1.60943794250488,1.28093385696411,2.9003221988678],[4,484,4,1936,49,81,225,25,676,484],[0,4,0,784,4,64,49,9,16,441]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>wage<\/th>\n      <th>educ<\/th>\n      <th>exper<\/th>\n      <th>tenure<\/th>\n      <th>nonwhite<\/th>\n      <th>female<\/th>\n      <th>married<\/th>\n      <th>numdep<\/th>\n      <th>smsa<\/th>\n      <th>northcen<\/th>\n      <th>south<\/th>\n      <th>west<\/th>\n      <th>construc<\/th>\n      <th>ndurman<\/th>\n      <th>trcommpu<\/th>\n      <th>trade<\/th>\n      <th>services<\/th>\n      <th>profserv<\/th>\n      <th>profocc<\/th>\n      <th>clerocc<\/th>\n      <th>servocc<\/th>\n      <th>lwage<\/th>\n      <th>expersq<\/th>\n      <th>tenursq<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 ---
 ## 2.3 Properties of OLS on Any Sample of Data
 
 Fitted (or predicted) values: `\(\hat{y}_i=\hat{\beta}_0+\hat{\beta}_0x_i\)`
 
-Residuals: $\hat{u}_i=y_i+\hat{y_i} $
+Residuals: `\(\hat{u_i}=y_i+\hat{y_i}\)`
 
 Algebraic properties:
 
@@ -278,11 +325,11 @@ How well does an independent variable explain the dependent variable?
 
 Total sum of squares (SST)- represents the total variation in the dependent variable
 
-`$$S S T \equiv \sum_{i=1}^{n}\left(y_{i}-\bar{y}\right)^{2} \quad S S E \equiv$$`
+`$$S S T \equiv \sum_{i=1}^{n}\left(y_{i}-\bar{y}\right)^{2}$$`
 
 Explained sum of squares (SSE)- represents variation explained by regression
 
-$$\sum_{i=1}^{n}\left(\hat{y}_{i}-\bar{y}\right)^{2} $$
+`$$S S E \equiv\sum_{i=1}^{n}\left(\hat{y}_{i}-\bar{y}\right)^{2}$$`
 Residual sum of squares (SSR)- represents variation **NOT** explained by regression
 
 `$$\quad S S R \equiv \sum_{i=1}^{n} \hat{u}_{i}{ }^{2}$$`
@@ -398,9 +445,9 @@ Goodness-of-fit measure (R-squared)
 How do we interpret `\(R^2\)`?
 
 ???
-The regression explains only 1.3% of the total variatiob in salaries
+The regression explains only 1.3% of the total variation in salaries
 
-The regression explains 85.6% of the total variatiob in election outcomes
+The regression explains 85.6% of the total variation in election outcomes
 
 
 
@@ -414,37 +461,33 @@ The regression explains 85.6% of the total variatiob in election outcomes
 
   - **Log- level regression:**  
   
-`\(\ln (y)=\beta_{0}+\beta_{1} x+\epsilon\)`
+`$$\ln (y)=\beta_{0}+\beta_{1} x+\epsilon$$`
 
-`\(\ln (wage)=\beta_{0}+\beta_{1}educ+\epsilon\)`
+`$$\ln (wage)=\beta_{0}+\beta_{1}educ+\epsilon$$`
 
 
+`$$\beta_{1}=\frac{\Delta \log (\text { wage })}{\Delta e d u c}=\frac{1}{w a g e} \cdot \frac{\Delta \text { wage }}{\Delta e d u c}=\frac{\frac{\Delta w a g e}{\text { wage }}}{\Delta e d u c}$$`
 
-&lt;img src="29.png" width="989" /&gt;
- `\(\widehat{\ln (wage)}=0,584+0.083~educ+\epsilon\)`
+ `$$\widehat{\ln (wage)}=0,584+0.083~educ+\epsilon$$`
  
  *Interpretation: The wage increases by 8.3% for every additional year of education.*
 ???
 Because the percentage change in wage is the same for each add. year of educ, the change in wage for an extra year of educ increases as education increases.
----
-
-
-
 
 ---
 ### Incorporating nonlinearities
 
-  - Level- log regression:
+  - **Level- log regression:**
   
 `\(y=\beta_{0}+\beta_{1}ln(x)+\epsilon\)`
 
 *Interpretation: The `\(\frac{\widehat{\beta_{1}}}{100}\)` can be interpreted as the expected increase in `\(Y\)` from a 1% increase in `\(X\)`* 
 
-  - Log- log regression:
+  - **Log- log regression:**
   
 `\(\ln (y)=\beta_{0}+\beta_{1} ln(x)+\epsilon\)`
 
-*Interpretation: The $\widehat{\beta_{1}  is the expected percentage change in `\(Y\)` when `\(X\)` increases by some percentage (elasticity)*
+*Interpretation: The `\(\widehat{\beta_{1}}\)`  is the expected percentage change in `\(Y\)` when `\(X\)` increases by some percentage (elasticity)*
 
 Note: All these models are called linear regression models, even if we allow for nonlinear relationship between `\(x\)` and `\(y\)`
 
@@ -471,20 +514,36 @@ Population model: `\(y=\beta_{0}+\beta_{1} x+\epsilon\)`
 [Sample Distribution of OLS Estimators- Simulations](https://professoramanda.github.io/econsimulations/)
 
 --
-Question: On average, will the `\(\widehat{\beta_{1}}\)` be equal to the true parameter `\(\beta_{1}\)` if  we repeatedly sample?
+Question: On average, will the `\(\widehat{\beta_{1}}\)` be equal to the true parameter `\(\beta_{1}\)` if  we repeatedly sample? How large will their variability be in repeated samples
+
+---
+### Expected values and variances of the OLS estimators
+
+ The estimated regression coefficients are random variables because they are calculated from a random sample:
+`$$\widehat{\beta}_{1}=\frac{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)\left(y_{i}-\bar{y}\right)}{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}}, \quad \widehat{\beta}_{0}=\bar{y}-\widehat{\beta}_{1} \bar{x}$$`
+
+Data is random and depends on particular sample that has been drawn.
 
 --
-**Unbiasedness**
-$$ E(\widehat{\beta_{1}})=\beta_{1}$$ 
+
+ The question is what the estimators will estimate on average and how large will their variability be in repeated samples
+`$$E\left(\widehat{\beta}_{0}\right)=?, E\left(\widehat{\beta}_{1}\right)=? \quad\\
+\operatorname{Var}\left(\widehat{\beta}_{0}\right)=?, \operatorname{Var}\left(\widehat{\beta}_{1}\right)=?$$`
+
+
+---
+### Unbiasedness
+
+`$$E(\widehat{\beta_{1}})=\beta_{1}$$` 
 
 --
+
 Unbiasedness means that if we could take as many random samples on `\(Y\)` as we want from the population and compute an estimate each time, the average of the estimates would be equal to `\(\beta_{1}\)`
 
 There are several assumptions required for OLS estimates toe be unbiased
 
 
-??? 
-We will study properties of the distributions of  `\(\widehat{\beta_{0}},\widehat{\beta_{1}}\)` over different random samples from the population
+??? We will study properties of the distributions of  `\(\widehat{\beta_{0}},\widehat{\beta_{1}}\)` over different random samples from the population
 
 
 
@@ -494,15 +553,134 @@ We will study properties of the distributions of  `\(\widehat{\beta_{0}},\wideha
 ### Standard Assumptions for the Linear Regression Model (SLR- Simple Linear Regression)
 
 - Assumption SLR 1: **Linear in parameters**
+
 `\(y=\beta_{0}+\beta_{1} x+u \longleftarrow \begin{aligned}&amp;\text { In the population, the relationship } \\&amp;\text { between } \mathrm{y} \text { and } \mathrm{x} \text { is linear }\end{aligned}\)`
 
 - Assumption SLR.2 **Random sampling**
+
 `\(\left\{\left(x_{i}, y_{i}\right): i=1, \ldots, n\right\} \leftarrow\)` The data is a random sample drawn from the population
+
 `\(y_{i}=\beta_{0}+\beta_{1} x_{i}+u_{i} \longleftarrow\)` Each data point therefore follows the population equation
+
+&lt;img src="2b.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+???
+The population consists, for example, of all workers of country A
+In the population, there is a linear relationship between wages (or log wages) and years of education.
+Draw completely randomly a worker from the population
+The wage and the years of education of the worker drawn are random because one does not know beforehand which worker is drawn.
+Throw that worker back into the population and repeat the random draw n times.
+The wages and years of education of the sampled workers are used to estimate the linear relationship between wages and education.
+
+
+---
+### Standard Assumptions for the Linear Regression Model (SLR- Simple Linear Regression)
+
 - Assumption SLR.3 **Sample variation in the explanatory variable**
+
+`\(\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}&gt;0\)`
+
+
+--
+The values of the explanatory variables are not all  the same (otherwise it would be impossible to study how different values of the explanatory variable aligned lead to different values of the dependent variable)
 
 - Assumption SLR.4 **Zero conditional mean**
 
+ `\(E\left(u_{i} \mid x_{i}\right)=0\)` 
+
+--
+
+The value of the explanatory variable must contain no information about the mean of the unobserved factors
+
+ 
+---
+### Unbiasedness of the OLS estimates
+
+`\(S L R .1-S L R .4 \Rightarrow E\left(\widehat{\beta}_{0}\right)=\beta_{0}, E\left(\widehat{\beta}_{1}\right)=\beta_{1}\)`
+
+Interpretation of unbiasedness:
+
+- The estimated coefficients may be smaller or larger, depending on the sample that is the result of a random draw.
+
+--
+
+- However, on average, they will be equal to the values that characterize the true relationship between `\(y\)` and `\(x\)` in the population.
+--
+
+- "On average" means if sampling was repeated, i.e. if drawing the random sample and doing the estimation was repeated many times.
+
+--
+
+- In a given sample, estimates may differ considerably from true values.
+
+
+---
+### Variances of the OLS estimators
+
+Depending on the sample, the estimates will be nearer or farther away from the true population values.
+
+How far can we expect our estimates to be away from the true population values on average (= sampling variability)?
+
+Sampling variability is measured by the estimator‘s variances
+
+
+
+- Assumption SLR5: **Homoskedasticity**
+
+`\(\operatorname{Var}\left(u_{i} \mid x_{i}\right)=\sigma^{2}\)` 
+
+The value of the explanatory variable must contain no information about the variability of the unobserved factors
+
+---
+### Homoskedasticity VS Heteroskedasticity
+
+
+&lt;img src="2c.png" width="600px" style="display: block; margin: auto;" /&gt;
+
+--
+
+&lt;img src="2d.png" width="600px" style="display: block; margin: auto;" /&gt;
+
+---
+### Variances of the OLS estimators
+
+`$$\operatorname{Var}\left(\widehat{\beta}_{1}\right)=\frac{\sigma^{2}}{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}}=\frac{\sigma^{2}}{S S T_{x}}$$`
+
+
+
+`$$\operatorname{Var}\left(\widehat{\beta}_{0}\right)=\frac{\sigma^{2} n^{-1} \sum_{i=1}^{n} x_{i}^{2}}{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}}=\frac{\sigma^{2} n^{-1} \sum_{i=1}^{n} x_{i}^{2}}{S S T_{x}}$$`
+
+---
+### Estimating the error variance
+
+ The variance of u does not depend on `\(x\)` i.e. equal to the unconditional variance
+ 
+`$$\operatorname{Var}\left(u_{i} \mid x_{i}\right)=\sigma^{2}=\operatorname{Var}\left(u_{i}\right)$$`
+--
+
+ One could estimate the variance of the errors by calculating the variance of the residuals in the sample; unfortunately this estimate would be biased 
+ 
+`$$\hat{\sigma}^{2}=\frac{1}{n} \sum_{i=1}^{n}\left(\hat{u}_{i}-\overline{\hat{u}}_{i}\right)^{2}=\frac{1}{n} \sum_{i=1}^{n} \hat{u}_{i}^{2}$$`
+
+--
+
+An unbiased estimate of the error variance can be obtained by substracting the number of estimated regression coefficients from the number of observations:
+
+`$$\widehat{\sigma}^{2}=\frac{1}{n-2} \sum_{i=1}^{n} \widehat{u}_{i}^{2}$$`
+
+---
+### Unbiasedness of the error variance
+
+`$$S L R .1-S L R .5 \quad \Rightarrow \quad E\left(\widehat{\sigma}^{2}\right)=\sigma^{2}$$`
+
+- Calculation of standard errors for regression coefficients
+
+`$$\begin{aligned}
+&amp;\operatorname{se}\left(\widehat{\beta}_{1}\right)=\sqrt{\widehat{\operatorname{Var}}\left(\widehat{\beta}_{1}\right)}=\sqrt{\hat{\sigma}^{2} / S S T_{x}} \\
+&amp;\operatorname{se}\left(\hat{\beta}_{0}\right)=\sqrt{\widehat{\operatorname{Var}\left(\hat{\beta}_{0}\right)}}=\sqrt{\hat{\sigma}^{2} n^{-1} \sum_{i=1}^{n} x_{i}^{2} / S S T_{x}}
+\end{aligned}$$`
+
+The estimated **standard deviations** of the regression coefficients are called **"standard errors."** They measure how precisely the regression coefficients are estimated.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

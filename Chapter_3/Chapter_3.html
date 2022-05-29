@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Chapter 3: Multiple Regression Analysis: Estimation</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Chapter 3: Multiple Regression Analysis: Estimation
+]
+.subtitle[
+## Introductory Econometrics: A Modern Approach
+]
+
+---
+
+
+
+
+
+
+
+
+
+---
+## 3.1 Definition of the multiple linear regression model
+
+
+
+"Explains variable `\(y\)` in terms of variables `\(x_{1}, x_{2}, \ldots, x_{k}\)` "
+
+&lt;img src="31.png" width="600px" style="display: block; margin: auto;" /&gt;
+
+--
+
+Why use multiple regression model?
+
+--
+&lt;ol&gt;
+  &lt;li&gt;  Incorporate more explanatory factors into the model
+--
+  &lt;li&gt;  Explicitly hold fixed other factors that otherwise would be in the error term
+--
+  &lt;li&gt; Allow for more flexible functional forms
+  &lt;/ol&gt;
+
+
+---
+
+### Examples
+
+ - Wage equation
+ 
+&lt;img src="32.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+--
+
+  - Average test scores and per student spending
+  
+&lt;img src="33.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+   - Per student spending is likely to be correlated with average family income at a given high school because of school financing.
+    
+   - Omitting average family income in regression would lead to biased estimate of the effect of spending on average test scores.
+
+   - In a simple regression model, effect of per student spending would partly include the effect of family income on test scores.
+
+---
+
+### Examples
+
+  - Family income and family consumption
+      - Model has two explanatory variables: income and income squared
+
+
+&lt;img src="34.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+By how much does consumption increase if income is increased by one unit?
+
+--
+
+`$$\frac{\Delta \operatorname{con} s}{\Delta \operatorname{inc}} \approx \beta_{1}+2 \beta_{2} \operatorname{inc}$$`
+
+Depends on how much income is already there
+
+--
+
+   - CEO salary, sales and CEO tenure
+   
+&lt;img src="35.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+--
+
+Note: Meaning of “linear” regression- the model has to be linear in the parameters (not in the variables)
+
+   
+
+
+???
+Consumption is explained as a quadratic function of income
+
+Model assumes a constant elasticity relationship between CEO salary and the sales of his or her firm.
+Model assumes a quadratic relationship between CEO salary and his or her tenure with the firm.
+
+
+
+---
+
+## 3.2 Mechanics and Interpretation of Ordinary Least Squares
+
+ ### a) Obtaining the OLS estimates
+ 
+ - Random sample
+ 
+`$$\left\{\left(x_{i 1}, x_{i 2}, \ldots, x_{i k}, y_{i}\right): i=1, \ldots, n\right\}$$`
+
+- Regression residuals
+`$$\widehat{u}_{i}=y_{i}-\widehat{\beta}_{0}-\widehat{\beta}_{1} x_{i 1}-\widehat{\beta}_{2} x_{i 2}-\ldots-\widehat{\beta}_{k} x_{i k}$$`
+- Minimize sum of squared residuals
+`$$\min \sum_{i=1}^{n} \widehat{u}_{i}^{2} \rightarrow \widehat{\beta}_{0}, \widehat{\beta}_{1}, \widehat{\beta}_{2}, \ldots, \widehat{\beta}_{k}$$`
+
+???
+The method of OLS chooses the estimates to minimize the sum of squared residuals
+
+---
+
+ ### b) Interpreting the OLS Regression Equation
+ 
+`$$\widehat{y}=\widehat{\beta_{0}}+\widehat{\beta_{1}} x_{1}+\widehat{\beta_{2}} x_{2}+\ldots+\widehat{\beta_{k}} x_{k}$$`
+
+By how much does the dependent variable change if the k-th independent variable is increased by one unit, holding all other independent variables constant?
+
+--
+
+`\(\beta_{k}=\frac{\Delta y}{\Delta x_{k}}\)`
+
+  - "Ceterius paribus" holding all other independent variables constant
+  
+  - The multiple linear regression model manages to hold the values of other explanatory variables fixed even if they are correlated with the explanatory variable under consideration.
+  
+  - It has still to be assumed that unobserved factors do not change if the explanatory variables are changed.
+
+  
+---
+
+Example: 3.1 Determinants of college GPA
+
+
+```r
+data(gpa1, package='wooldridge')
+
+GPAres&lt;-feols(colGPA~ hsGPA+ACT, data = gpa1)
+GPAsingle&lt;-feols(colGPA~ hsGPA, data = gpa1)
+
+models &lt;- list(GPAres, GPAsingle)
+
+modelsummary(models,output = "markdown")
+```
+
+
+
+|            | Model 1 | Model 2 |
+|:-----------|:-------:|:-------:|
+|(Intercept) |  1.286  |  1.415  |
+|            | (0.341) | (0.307) |
+|hsGPA       |  0.453  |  0.482  |
+|            | (0.096) | (0.090) |
+|ACT         |  0.009  |         |
+|            | (0.011) |         |
+|Num.Obs.    |   141   |   141   |
+|R2          |  0.176  |  0.172  |
+|R2 Adj.     |  0.164  |  0.166  |
+|R2 Within   |         |         |
+|R2 Pseudo   |         |         |
+|AIC         |  99.1   |  97.9   |
+|BIC         |  108.0  |  103.8  |
+|Log.Lik.    | -46.573 | -46.963 |
+|Std.Errors  |   IID   |   IID   |
+  ???
+  Interpretation example 3.1
+  Interpretation
+Holding ACT fixed, another point on high school grade point average is associated with another .453 points college grade point average
+Or: If we compare two students with the same ACT, but the hsGPA of student A is one point higher, we predict student A to have a colGPA that is .453 higher than that of student B
+Holding high school grade point average fixed, another 10 points on ACT are associated with less than one point on college GPA
+
+  
+---
+  
+  Example: 3.2 Hourly wage equation
+  
+
+```r
+data(wage1, package='wooldridge')
+
+summary(feols(lwage~educ+exper+tenure, data = wage1))
+```
+
+```
+## OLS estimation, Dep. Var.: lwage
+## Observations: 526 
+## Standard-errors: IID 
+##             Estimate Std. Error  t value   Pr(&gt;|t|)    
+## (Intercept) 0.284360   0.104190  2.72923 6.5625e-03 ** 
+## educ        0.092029   0.007330 12.55525  &lt; 2.2e-16 ***
+## exper       0.004121   0.001723  2.39144 1.7136e-02 *  
+## tenure      0.022067   0.003094  7.13307 3.2944e-12 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## RMSE: 0.439183   Adj. R2: 0.312082
+```
+
+???
+example 3.2 interpretation
+
+
+---
+
+### c) The Meaning of "Holding Other Factors Fixed" in Multiple Regression
+
+
+- In example 3.1, we observed that the coefficient on `ACT` measures the predicted difference in `colGPA`, holding `hsGPA` fixed
+
+--
+
+- It may seem that we sampled people with the same `hsGPA` but different `ACT` scores
+
+--
+
+- **Data is random** , no restrictions were placed on the values of `hsGPA` and `ACT`
+
+--
+
+- If we could collect a sample of individuals with the same HSGPA, then we could preform a simple regression `ColGPA` and `ACT`
+
+--
+
+- Multiple regression allows us to mimic this situation without restricting the values of any independent variables
+
+
+---
+
+
+
+  
+  
+  
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
