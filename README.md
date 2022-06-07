@@ -2,10 +2,14 @@
 
 [Lecture 1](https://andrahiriscau.github.io/Econometrics_Slides/Lecture_1/Econometrics.html#1)
 
-[Lecture 1.1](https://andrahiriscau.github.io/Econometrics_Slides/Chapter_2/Chapter_2.html#1)
+Introductory Econometrics A Modern Approach Jeffrey M. Wooldridge
+
+[Chapter 2](https://andrahiriscau.github.io/Econometrics_Slides/Chapter_2/Chapter_2.html#1)
+
+[Chapter 3](https://andrahiriscau.github.io/Econometrics_Slides/Chapter_3/Chapter_3.html)
 
 
-[Elasticity](https://andrahiriscau.github.io/Econometrics_Slides/Lehman_College/Elasticity.html#1)
+
 
 The recommneded books are:
 
