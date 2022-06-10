@@ -55,7 +55,6 @@ style_duo_accent(
 ```
 
 
----
 ## 3.1 Definition of the multiple linear regression model
 
 
