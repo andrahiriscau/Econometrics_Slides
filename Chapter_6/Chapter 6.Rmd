@@ -1,0 +1,105 @@
+---
+title: "Chapter 6: Multiple Regression Analysis: Further Issues"
+subtitle: "Introductory Econometrics: A Modern Approach"
+#author: "Andra Hiriscau"
+#date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+      css: xaringan-themer.css
+      #css: ["default", "assets/sydney-fonts.css", "assets/sydney.css"]
+      #css: ['example.css']
+      lib_dir: libs
+      nature:
+        slideNumberFormat: "%current%"
+        highlightStyle: github
+        highlightLines: true
+        ratio: 16:9
+        countIncrementalSlides: true
+
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE) 
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, fig.width = 8, fig.height = 6)
+library(tidyverse)
+library(gghighlight)
+library(jtools)
+library (wooldridge) # need to load the package before using it
+library(fixest) # needed to run the regression feols
+library(modelsummary)
+library(magrittr)
+
+```
+
+
+
+``` {r xaringan-themer, include=FALSE, warning=FALSE}
+# install.packages("remotes")
+#remotes::install_github('rstudio/chromote')
+#remotes::install_github("jhelvy/xaringanBuilder")
+
+library(xaringanBuilder)
+library(xaringanthemer)
+style_duo_accent(
+ # primary_color = "#1381B0",
+  primary_color = "#006600", # color first slide and titles
+  secondary_color = "#FF961C",
+  inverse_header_color = "#FFFFFF"  #white
+)
+
+#this to build PDF :)
+#build_pdf('https://github.com/andrahiriscau/Econometrics_Slides/blob/main/Lecture_1/Econometrics.html')
+#build_pdf('https://andrahiriscau.github.io/Econometrics_Slides/Chapter_2/Chapter_2.html')
+
+
+
+```
+
+
+
+
+### 6.1 Effects of data scaling on OLS statistics
+
+When variables are re-scaled, the coefficients, standard errors, confidence intervals, t statistic and F statistic changes in a way that preserve the testing outcome.
+
+**Dependent Variables**
+
+
+
+**Independent Variables**
+
+
+
+
+```{r,echo=TRUE,eval=TRUE}
+
+data(wage1, package='wooldridge')
+
+# Regression
+model_1 <- lm(wage ~ educ, wage1)
+#summary(model_1)
+wage1 %<>% mutate(wagehat1 = fitted(model_1))
+ggplot(data = wage1, mapping = aes(x = educ)) + 
+  theme_bw() +
+  geom_point(mapping = aes(y = wage, col = 'wage')) +
+  geom_point(mapping = aes(y = wagehat1, col = 'linear prediction'))
+
+
+```
+
+---
+
+```{r}
+data(wage1, package='wooldridge')
+
+wage1 %<>% mutate(educsq = educ^2)
+model_2 <- lm(wage ~ educ + educsq, wage1)
+#summary(model_2)
+wage1 %<>% mutate(wagehat2 = fitted(model_2))
+ggplot(data = wage1, mapping = aes(x = educ)) + 
+  theme_bw() +
+  geom_point(mapping = aes(y = wage, col = 'wage')) +
+  geom_point(mapping = aes(y = wagehat2, col = 'linear prediction'))
+
+
+```
